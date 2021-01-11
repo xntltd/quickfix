@@ -1,7 +1,5 @@
 # Quickfix
 
-[![Build Status](https://travis-ci.org/quickfix/quickfix.svg?branch=master)](https://travis-ci.org/quickfix/quickfix)
-
 ## BUILDING AND INSTALLING
 
     Full instructions:
@@ -37,3 +35,23 @@ If one has Ninja then (with system openssl),
 
 cmake -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DHAVE_SSL=ON -DCMAKE_INSTALL_PREFIX:PATH="install-path" ..
 ninja install
+
+## Building python package
+
+0) Clone https://github.com/quickfix/quickfix-package. You will also need twine or other packets depending of your OS if you wish to upload your package to local pip repository.
+
+1) cd quickfix-package
+
+2) Clone this repo inside quickfix-package folder and build it (see system specific instruction above. Not that compilation can take time on most systems)
+    cd quickfix
+    ./bootstrap
+    ./configure --with-python3
+    make
+
+3) Run OS depending package (./package-python.sh for example). Note that setup.py is called via `python` executable which can be obsolete in modern systems (simply change it to python3 if needed)
+
+4) Install packet into system
+    python3 -m pip install --no-index file://<path_to_quickfix-package>/quickfix-python/dist/quickfix-1.15.1.tar.gz
+
+
+OR just simply download it from assets: (https://github.com/xntltd/quickfix/releases/download/v1.15.1/quickfix-1.15.1.tar.gz)
