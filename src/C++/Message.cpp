@@ -52,7 +52,7 @@ Message::Message(const message_order &hdrOrder, const message_order &trlOrder, c
   m_trailer(trlOrder), m_validStructure( true ) {}
 
 Message::Message( const std::string& string, bool validate )
-EXCEPT ( InvalidMessage )
+throw( InvalidMessage )
 : m_validStructure( true )
 , m_tag( 0 )
 {
@@ -62,7 +62,7 @@ EXCEPT ( InvalidMessage )
 Message::Message( const std::string& string,
                   const DataDictionary& dataDictionary,
                   bool validate )
-EXCEPT ( InvalidMessage )
+throw( InvalidMessage )
 : m_validStructure( true )
 , m_tag( 0 )
 {
@@ -73,7 +73,7 @@ Message::Message( const std::string& string,
                   const DataDictionary& sessionDataDictionary,
                   const DataDictionary& applicationDataDictionary,
                   bool validate )
-EXCEPT ( InvalidMessage )
+throw( InvalidMessage )
 : m_validStructure( true )
 , m_tag( 0 )
 {
@@ -86,7 +86,7 @@ Message::Message( const message_order &hdrOrder,
                   const std::string& string,
                   const DataDictionary& dataDictionary,
                   bool validate )
-EXCEPT ( InvalidMessage )
+throw( InvalidMessage )
 : FieldMap(order), m_header(hdrOrder),
   m_trailer(trlOrder), m_validStructure( true )
 {
@@ -100,7 +100,7 @@ Message::Message( const message_order &hdrOrder,
                   const DataDictionary& sessionDataDictionary,
                   const DataDictionary& applicationDataDictionary,
                   bool validate )
-EXCEPT ( InvalidMessage )
+throw( InvalidMessage )
 : FieldMap(order), m_header(hdrOrder),
   m_trailer(trlOrder), m_validStructure( true )
 {
@@ -337,7 +337,7 @@ void Message::setString( const std::string& string,
                          bool doValidation,
                          const DataDictionary* pSessionDataDictionary,
                          const DataDictionary* pApplicationDataDictionary )
-EXCEPT ( InvalidMessage )
+throw( InvalidMessage )
 {
   clear();
 
@@ -574,7 +574,7 @@ bool Message::isTrailerField( int field, const DataDictionary * pD )
 }
 
 SessionID Message::getSessionID( const std::string& qualifier ) const
-EXCEPT ( FieldNotFound )
+throw( FieldNotFound )
 {
   BeginString beginString;
   SenderCompID senderCompID;

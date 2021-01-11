@@ -22,6 +22,8 @@
 #ifndef FIX_UTILITY_H
 #define FIX_UTILITY_H
 
+#include "config.h"
+
 #ifdef _MSC_VER
 #pragma warning( disable : 4503 4355 4786 4290 )
 #endif
@@ -29,8 +31,6 @@
 #ifndef _MSC_VER
 #include "Allocator.h"
 #endif
-
-#include "Except.h"
 
 #ifdef HAVE_STLPORT
   #define ALLOCATOR std::allocator

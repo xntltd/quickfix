@@ -60,7 +60,7 @@ public:
   bool read();
 
 private:
-  bool readMessage( std::string& msg ) EXCEPT ( SocketRecvFailed );
+  bool readMessage( std::string& msg ) throw( SocketRecvFailed );
   void processStream();
   bool send( const std::string& );
   bool setSession( const std::string& msg );
@@ -78,7 +78,6 @@ private:
   Sessions m_sessions;
   Session* m_pSession;
   bool m_disconnect;
-  fd_set m_fds;
 };
 }
 

@@ -80,7 +80,7 @@ private:
     Queue;
 
   bool isValidSession();
-  void readFromSocket() EXCEPT ( SocketRecvFailed );
+  void readFromSocket() throw( SocketRecvFailed );
   bool readMessage( std::string& msg );
   void readMessages( SocketMonitor& s );
   bool send( const std::string& );
@@ -96,7 +96,6 @@ private:
   Session* m_pSession;
   SocketMonitor* m_pMonitor;
   Mutex m_mutex;
-  fd_set m_fds;
 };
 }
 

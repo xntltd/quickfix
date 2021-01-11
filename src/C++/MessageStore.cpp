@@ -38,7 +38,7 @@ void MemoryStoreFactory::destroy( MessageStore* pStore )
 }
 
 bool MemoryStore::set( int msgSeqNum, const std::string& msg )
-EXCEPT ( IOException )
+throw( IOException )
 {
   m_messages[ msgSeqNum ] = msg;
   return true;
@@ -46,7 +46,7 @@ EXCEPT ( IOException )
 
 void MemoryStore::get( int begin, int end,
                        std::vector < std::string > & messages ) const
-EXCEPT ( IOException )
+throw( IOException )
 {
   messages.clear();
   Messages::const_iterator find = m_messages.find( begin );

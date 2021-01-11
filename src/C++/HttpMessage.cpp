@@ -34,7 +34,7 @@ namespace FIX
 HttpMessage::HttpMessage() {}
 
 HttpMessage::HttpMessage( const std::string& string )
-EXCEPT ( InvalidMessage )
+throw( InvalidMessage )
 {
   setString( string );
 }
@@ -52,7 +52,7 @@ std::string& HttpMessage::toString( std::string& str ) const
 }
 
 void HttpMessage::setString( const std::string& string )
-EXCEPT ( InvalidMessage )
+throw( InvalidMessage )
 {
   clear();
 

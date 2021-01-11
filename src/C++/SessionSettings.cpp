@@ -31,14 +31,14 @@
 namespace FIX
 {
 SessionSettings::SessionSettings( std::istream& stream, bool resolveEnvVars )
-EXCEPT ( ConfigError )
+throw( ConfigError )
 : m_resolveEnvVars( resolveEnvVars )
 {
   stream >> *this;
 }
 
 SessionSettings::SessionSettings( const std::string& file, bool resolveEnvVars )
-EXCEPT ( ConfigError )
+throw( ConfigError )
 : m_resolveEnvVars( resolveEnvVars )
 {
   std::ifstream fstream( file.c_str() );
@@ -48,7 +48,7 @@ EXCEPT ( ConfigError )
 }
 
 std::istream& operator>>( std::istream& stream, SessionSettings& s )
-EXCEPT ( ConfigError )
+throw( ConfigError )
 {
   Settings settings(s.m_resolveEnvVars);
   stream >> settings;
@@ -125,7 +125,7 @@ const bool SessionSettings::has( const SessionID& sessionID ) const
 }
 
 const Dictionary& SessionSettings::get( const SessionID& sessionID ) const
-EXCEPT ( ConfigError )
+throw( ConfigError )
 {
   Dictionaries::const_iterator i;
   i = m_settings.find( sessionID );
@@ -135,7 +135,7 @@ EXCEPT ( ConfigError )
 
 void SessionSettings::set( const SessionID& sessionID,
                            Dictionary settings )
-EXCEPT ( ConfigError )
+throw( ConfigError )
 {
   if( has(sessionID) )
     throw ConfigError( "Duplicate Session " + sessionID.toString() );
@@ -149,7 +149,7 @@ EXCEPT ( ConfigError )
   m_settings[ sessionID ] = settings;
 }
 
-void SessionSettings::set( const Dictionary& defaults ) EXCEPT ( ConfigError ) 
+void SessionSettings::set( const Dictionary& defaults ) throw( ConfigError ) 
 { 
   m_defaults = defaults;
   Dictionaries::iterator i = m_settings.begin();
@@ -167,7 +167,7 @@ std::set < SessionID > SessionSettings::getSessions() const
 }
 
 void SessionSettings::validate( const Dictionary& dictionary ) const
-EXCEPT ( ConfigError )
+throw( ConfigError )
 {
   std::string beginString = dictionary.getString( BEGINSTRING );
   if( beginString != BeginString_FIX40 &&

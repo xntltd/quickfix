@@ -52,18 +52,18 @@ class Initiator
 {
 public:
   Initiator( Application&, MessageStoreFactory&,
-             const SessionSettings& ) EXCEPT ( ConfigError );
+             const SessionSettings& ) throw( ConfigError );
   Initiator( Application&, MessageStoreFactory&,
-             const SessionSettings&, LogFactory& ) EXCEPT ( ConfigError );
+             const SessionSettings&, LogFactory& ) throw( ConfigError );
 
   virtual ~Initiator();
 
   /// Start initiator.
-  void start() EXCEPT ( ConfigError, RuntimeError );
+  void start() throw ( ConfigError, RuntimeError );
   /// Block on the initiator
-  void block() EXCEPT ( ConfigError, RuntimeError );
+  void block() throw ( ConfigError, RuntimeError );
   /// Poll the initiator
-  bool poll( double timeout = 0.0 ) EXCEPT ( ConfigError, RuntimeError );
+  bool poll( double timeout = 0.0 ) throw ( ConfigError, RuntimeError );
 
   /// Stop initiator.
   void stop( bool force = false );
@@ -104,12 +104,12 @@ protected:
   void connect();
 
 private:
-  void initialize() EXCEPT ( ConfigError );
+  void initialize() throw ( ConfigError );
 
   /// Implemented to configure acceptor
-  virtual void onConfigure( const SessionSettings& ) EXCEPT ( ConfigError ) {};
+  virtual void onConfigure( const SessionSettings& ) throw ( ConfigError ) {};
   /// Implemented to initialize initiator
-  virtual void onInitialize( const SessionSettings& ) EXCEPT ( RuntimeError ) {};
+  virtual void onInitialize( const SessionSettings& ) throw ( RuntimeError ) {};
   /// Implemented to start connecting to targets.
   virtual void onStart() = 0;
   /// Implemented to connect and poll for events.

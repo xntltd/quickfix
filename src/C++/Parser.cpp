@@ -32,7 +32,7 @@ namespace FIX
 {
 bool Parser::extractLength( int& length, std::string::size_type& pos,
                             const std::string& buffer )
-EXCEPT ( MessageParseError )
+throw( MessageParseError )
 {
   if( !buffer.size() ) return false;
 
@@ -57,7 +57,7 @@ EXCEPT ( MessageParseError )
 }
 
 bool Parser::readFixMessage( std::string& str )
-EXCEPT ( MessageParseError )
+throw( MessageParseError )
 {
   std::string::size_type pos = 0;
 

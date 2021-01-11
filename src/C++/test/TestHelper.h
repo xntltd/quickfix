@@ -20,7 +20,7 @@ class TestApplication : public NullApplication
 {
 public:
   void fromApp( const Message&, const SessionID& )
-  EXCEPT( FieldNotFound, IncorrectDataFormat, IncorrectTagValue, UnsupportedMessageType ) {}
+  throw( FieldNotFound, IncorrectDataFormat, IncorrectTagValue, UnsupportedMessageType ) {}
   void onRun() {}
 };
 
@@ -62,23 +62,23 @@ class ExeceptionStore : public MessageStore
 public:
   virtual ~ExeceptionStore() {};
 
-  bool set( int, const std::string& ) EXCEPT ( IOException ) {
+  bool set( int, const std::string& ) throw( IOException ) {
     throw IOException("set threw an IOException");
   }
-  void get( int, int, std::vector < std::string > & ) const EXCEPT ( IOException ) {
+  void get( int, int, std::vector < std::string > & ) const throw( IOException ) {
     throw IOException("get threw an IOException");
   }
-  int getNextSenderMsgSeqNum() const EXCEPT ( IOException ) {return 0;};
-  int getNextTargetMsgSeqNum() const EXCEPT ( IOException ) {return 0;};
-  void setNextSenderMsgSeqNum( int value ) EXCEPT ( IOException ) {};
-  void setNextTargetMsgSeqNum( int value ) EXCEPT ( IOException ) {};
-  void incrNextSenderMsgSeqNum() EXCEPT ( IOException ) {};
-  void incrNextTargetMsgSeqNum() EXCEPT ( IOException ) {};
+  int getNextSenderMsgSeqNum() const throw( IOException ) {return 0;};
+  int getNextTargetMsgSeqNum() const throw( IOException ) {return 0;};
+  void setNextSenderMsgSeqNum( int value ) throw( IOException ) {};
+  void setNextTargetMsgSeqNum( int value ) throw( IOException ) {};
+  void incrNextSenderMsgSeqNum() throw( IOException ) {};
+  void incrNextTargetMsgSeqNum() throw( IOException ) {};
 
-  UtcTimeStamp getCreationTime() const EXCEPT ( IOException ) { return UtcTimeStamp(); };
+  UtcTimeStamp getCreationTime() const throw( IOException ) { return UtcTimeStamp(); };
 
-  void reset() EXCEPT ( IOException ) {throw IOException("reset IOException");};
-  void refresh() EXCEPT ( IOException ) {};
+  void reset() throw( IOException ) {throw IOException("reset IOException");};
+  void refresh() throw( IOException ) {};
 };
 
 class ExceptionMessageStoreFactory : public MessageStoreFactory

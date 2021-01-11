@@ -135,9 +135,9 @@ class SSLSocketAcceptor : public Acceptor, SocketServer::Strategy
   friend class SSLSocketConnection;
 public:
   SSLSocketAcceptor( Application&, MessageStoreFactory&,
-                  const SessionSettings& ) EXCEPT ( ConfigError );
+                  const SessionSettings& ) throw( ConfigError );
   SSLSocketAcceptor( Application&, MessageStoreFactory&,
-                  const SessionSettings&, LogFactory& ) EXCEPT ( ConfigError );
+                  const SessionSettings&, LogFactory& ) throw( ConfigError );
 
   virtual ~SSLSocketAcceptor();
 
@@ -154,8 +154,8 @@ private:
   typedef std::map < int, Sessions > PortToSessions;
   typedef std::map < socket_handle, SSLSocketConnection* > SocketConnections;
 
-  void onConfigure( const SessionSettings& ) EXCEPT ( ConfigError );
-  void onInitialize( const SessionSettings& ) EXCEPT ( RuntimeError );
+  void onConfigure( const SessionSettings& ) throw ( ConfigError );
+  void onInitialize( const SessionSettings& ) throw ( RuntimeError );
 
   void onStart();
   bool onPoll( double timeout );

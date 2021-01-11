@@ -60,33 +60,33 @@ class NullStore : public MessageStore
 public:
   NullStore() : m_nextSenderMsgSeqNum( 1 ), m_nextTargetMsgSeqNum( 1 ) {}
 
-  bool set( int, const std::string& ) EXCEPT ( IOException );
-  void get( int, int, std::vector < std::string > & ) const EXCEPT ( IOException );
+  bool set( int, const std::string& ) throw ( IOException );
+  void get( int, int, std::vector < std::string > & ) const throw ( IOException );
 
-  int getNextSenderMsgSeqNum() const EXCEPT ( IOException )
+  int getNextSenderMsgSeqNum() const throw ( IOException )
   { return m_nextSenderMsgSeqNum; }
-  int getNextTargetMsgSeqNum() const EXCEPT ( IOException )
+  int getNextTargetMsgSeqNum() const throw ( IOException )
   { return m_nextTargetMsgSeqNum; }
-  void setNextSenderMsgSeqNum( int value ) EXCEPT ( IOException )
+  void setNextSenderMsgSeqNum( int value ) throw ( IOException )
   { m_nextSenderMsgSeqNum = value; }
-  void setNextTargetMsgSeqNum( int value ) EXCEPT ( IOException )
+  void setNextTargetMsgSeqNum( int value ) throw ( IOException )
   { m_nextTargetMsgSeqNum = value; }
-  void incrNextSenderMsgSeqNum() EXCEPT ( IOException )
+  void incrNextSenderMsgSeqNum() throw ( IOException )
   { ++m_nextSenderMsgSeqNum; }
-  void incrNextTargetMsgSeqNum() EXCEPT ( IOException )
+  void incrNextTargetMsgSeqNum() throw ( IOException )
   { ++m_nextTargetMsgSeqNum; }
 
-  void setCreationTime( const UtcTimeStamp& creationTime ) EXCEPT ( IOException )
+  void setCreationTime( const UtcTimeStamp& creationTime ) throw ( IOException )
   { m_creationTime = creationTime; }
-  UtcTimeStamp getCreationTime() const EXCEPT ( IOException )
+  UtcTimeStamp getCreationTime() const throw ( IOException )
   { return m_creationTime; }
 
-  void reset() EXCEPT ( IOException )
+  void reset() throw ( IOException )
   {
     m_nextSenderMsgSeqNum = 1; m_nextTargetMsgSeqNum = 1;
     m_creationTime.setCurrent();
   }
-  void refresh() EXCEPT ( IOException ) {}
+  void refresh() throw ( IOException ) {}
 
 private:
   int m_nextSenderMsgSeqNum;

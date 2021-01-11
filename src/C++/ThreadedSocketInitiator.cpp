@@ -32,7 +32,7 @@ namespace FIX
 ThreadedSocketInitiator::ThreadedSocketInitiator(
   Application& application,
   MessageStoreFactory& factory,
-  const SessionSettings& settings ) EXCEPT ( ConfigError )
+  const SessionSettings& settings ) throw( ConfigError )
 : Initiator( application, factory, settings ),
   m_lastConnect( 0 ), m_reconnectInterval( 30 ), m_noDelay( false ), 
   m_sendBufSize( 0 ), m_rcvBufSize( 0 ) 
@@ -44,7 +44,7 @@ ThreadedSocketInitiator::ThreadedSocketInitiator(
   Application& application,
   MessageStoreFactory& factory,
   const SessionSettings& settings,
-  LogFactory& logFactory ) EXCEPT ( ConfigError )
+  LogFactory& logFactory ) throw( ConfigError )
 : Initiator( application, factory, settings, logFactory ),
   m_lastConnect( 0 ), m_reconnectInterval( 30 ), m_noDelay( false ), 
   m_sendBufSize( 0 ), m_rcvBufSize( 0 ) 
@@ -58,7 +58,7 @@ ThreadedSocketInitiator::~ThreadedSocketInitiator()
 }
 
 void ThreadedSocketInitiator::onConfigure( const SessionSettings& s )
-EXCEPT ( ConfigError )
+throw ( ConfigError )
 {
   const Dictionary& dict = s.get();
 
@@ -73,7 +73,7 @@ EXCEPT ( ConfigError )
 }
 
 void ThreadedSocketInitiator::onInitialize( const SessionSettings& s )
-EXCEPT ( RuntimeError )
+throw ( RuntimeError )
 {
 }
 
